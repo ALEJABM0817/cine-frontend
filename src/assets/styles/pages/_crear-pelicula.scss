@@ -1,0 +1,50 @@
+.crear-pelicula {
+  padding: $spacing-base;
+  background: $surface;
+
+  h2, h3 {
+    margin-bottom: $spacing-small;
+    color: $text-primary;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: $spacing-small;
+    margin-bottom: $spacing-base;
+    border: 1px solid $border-color;
+    border-radius: $radius-base;
+    background: $sidebar-background;
+    color: $text-primary;
+    font-size: 1rem;
+  }
+
+  .horario-group {
+    display: flex;
+    gap: $spacing-small;
+    margin-bottom: $spacing-base;
+    align-items: center;
+
+    input,
+    select {
+      flex: 1;
+    }
+  }
+
+  button {
+    padding: $spacing-small $spacing-base;
+    border: none;
+    border-radius: $radius-base;
+    background: $accent;
+    color: $color-white;
+    cursor: pointer;
+    margin-right: $spacing-small;
+    font-size: 1rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($accent, 10%);
+    }
+  }
+}

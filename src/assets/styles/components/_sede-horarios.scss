@@ -1,0 +1,37 @@
+.sedes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-base;
+  margin: $spacing-base 0;
+}
+
+.sede-bloque {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-base;
+  padding: $spacing-base;
+  width: 100%;
+  max-width: 320px;
+}
+
+.sede-bloque h3 {
+  margin: 0 0 $spacing-small;
+  color: $color-primary;
+}
+
+.horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-small;
+}
+
+.horario-btn {
+  background: $color-secondary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-base;
+  padding: $spacing-small;
+  cursor: pointer;
+  flex: 1 1 auto;
+  text-align: center;
+}

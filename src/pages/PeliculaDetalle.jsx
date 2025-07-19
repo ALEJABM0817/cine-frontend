@@ -7,7 +7,6 @@ const PeliculaDetalle = () => {
   const navigate = useNavigate();
   const [pelicula, setPelicula] = useState(null);
   const [sedesConHorarios, setSedesConHorarios] = useState([]);
-  const [sedeExpandida, setSedeExpandida] = useState(null);
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
@@ -30,59 +29,40 @@ const PeliculaDetalle = () => {
     if (user) {
       navigate(`/comprar/${idHorario}`);
     } else {
-      navigate('/login');
+      navigate('/login', { state: { from: `/comprar/${idHorario}` } });
     }
-  };
-
-  const manejarExpandirSede = (sedeId) => {
-    setSedeExpandida((prev) => (prev === sedeId ? null : sedeId));
   };
 
   if (!pelicula) return <p>Cargando película...</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="pelicula-detalle">
       <h2>{pelicula.titulo}</h2>
-      <img
-        src={pelicula.imagenUrl}
-        alt={pelicula.titulo}
-        style={{ width: '200px', marginBottom: '1rem' }}
-      />
+      <img src={pelicula.imagenUrl} alt={pelicula.titulo} />
       <p>{pelicula.descripcion}</p>
-
-      <h3>Horarios disponibles</h3>
+      <p><strong>Precio:</strong> ${pelicula.precio.toFixed(0)}</p>
+      <h3 className="horarios-title">Horarios disponibles</h3>
       {sedesConHorarios.map(({ sede, horarios }) => (
-        <div key={sede.id}>
-          <h4 onClick={() => manejarExpandirSede(sede.id)} style={{ cursor: 'pointer' }}>
-            {sede.nombre}
-          </h4>
-          {sedeExpandida === sede.id && (
-            <div style={{ paddingLeft: '1rem' }}>
-              {horarios.map((h) => (
-                <button
-                  key={h.id}
-                  onClick={() => manejarClickHorario(h.id)}
-                  style={{
-                    margin: '0.5rem',
-                    backgroundColor: '#222',
-                    color: 'white',
-                    border: 'none',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '5px',
-                  }}
-                >
-                  {new Date(h.hora).toLocaleString('es-CO', {
-                    weekday: 'short',
-                    day: 'numeric',
-                    month: 'short',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}{' '}
-                  - {h.sala.nombre}
-                </button>
-              ))}
-            </div>
-          )}
+        <div key={sede.id} className="horarios-section">
+          <h4>{sede.nombre}</h4>
+          <div className="horarios-list">
+            {horarios.map((h) => (
+              <button
+                key={h.id}
+                onClick={() => manejarClickHorario(h.id)}
+                className="horario-button"
+              >
+                {new Date(h.hora).toLocaleString('es-CO', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}{' '}
+                - {h.sala.nombre}
+              </button>
+            ))}
+          </div>
         </div>
       ))}
     </div>

@@ -1,0 +1,41 @@
+.sedes-admin {
+  padding: $spacing-base;
+  background: $surface;
+
+  h2 {
+    margin-bottom: $spacing-small;
+    font-size: 1.5rem;
+    color: $text-primary;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacing-base 0;
+  }
+
+  li {
+    background: $sidebar-background;
+    border: 1px solid $border-color;
+    border-radius: $radius-base;
+    padding: $spacing-small $spacing-base;
+    margin-bottom: $spacing-small;
+    color: $text-primary;
+    font-size: 0.95rem;
+  }
+
+  .btn-create {
+    padding: $spacing-small $spacing-base;
+    background: $accent;
+    color: $color-white;
+    border: none;
+    border-radius: $radius-base;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($accent, 10%);
+    }
+  }
+}

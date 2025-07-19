@@ -1,0 +1,59 @@
+.pelicula-detalle {
+  padding: $spacing-base;
+  background: $surface;
+  color: $text-primary;
+
+  h2 {
+    margin-bottom: $spacing-small;
+    font-size: 1.5rem;
+  }
+
+  img {
+    width: 200px;
+    margin-bottom: $spacing-base;
+    border-radius: $radius-base;
+  }
+
+  p {
+    margin-bottom: $spacing-base;
+  }
+
+  .horarios-title {
+    margin-top: $spacing-base;
+    margin-bottom: $spacing-small;
+    color: $accent;
+  }
+
+  .horarios-section {
+    margin-bottom: $spacing-base;
+
+    h4 {
+      margin-bottom: $spacing-small;
+      cursor: pointer;
+      color: $text-primary;
+    }
+
+    .horarios-list {
+      padding-left: $spacing-base;
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-small;
+    }
+
+    .horario-button {
+      background: $sidebar-background;
+      color: $color-white;
+      border: none;
+      padding: $spacing-small $spacing-base;
+      border-radius: $radius-base;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      border: 1px solid darken($sidebar-background, 10%);
+
+      &:hover {
+        background: darken($sidebar-background, 10%);
+      }
+    }
+  }
+}

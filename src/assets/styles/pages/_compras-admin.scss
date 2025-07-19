@@ -1,0 +1,29 @@
+.compras-admin {
+  padding: $spacing-base;
+  background: $surface;
+
+  h2 {
+    margin-bottom: $spacing-base;
+    font-size: 1.5rem;
+    color: $text-primary;
+  }
+
+  .compras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-base;
+  }
+
+  .compra-card {
+    background: $sidebar-background;
+    border: 1px solid $border-color;
+    border-radius: $radius-base;
+    padding: $spacing-base;
+    color: $text-primary;
+
+    p {
+      margin: 0 0 $spacing-small 0;
+      font-size: 0.95rem;
+    }
+  }
+}
