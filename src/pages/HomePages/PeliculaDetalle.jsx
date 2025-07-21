@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import api from '../../services/api';
 
 const PeliculaDetalle = () => {
   const { id } = useParams();
@@ -34,6 +34,13 @@ const PeliculaDetalle = () => {
   };
 
   if (!pelicula) return <p>Cargando película...</p>;
+  const now = new Date();
+  const sedesFiltradas = sedesConHorarios
+    .map(({ sede, horarios }) => ({
+      sede,
+      horarios: horarios.filter(h => new Date(h.hora) > now)
+    }))
+    .filter(group => group.horarios.length > 0);
 
   return (
     <div className="pelicula-detalle">
@@ -42,29 +49,33 @@ const PeliculaDetalle = () => {
       <p>{pelicula.descripcion}</p>
       <p><strong>Precio:</strong> ${pelicula.precio.toFixed(0)}</p>
       <h3 className="horarios-title">Horarios disponibles</h3>
-      {sedesConHorarios.map(({ sede, horarios }) => (
-        <div key={sede.id} className="horarios-section">
-          <h4>{sede.nombre}</h4>
-          <div className="horarios-list">
-            {horarios.map((h) => (
-              <button
-                key={h.id}
-                onClick={() => manejarClickHorario(h.id)}
-                className="horario-button"
-              >
-                {new Date(h.hora).toLocaleString('es-CO', {
-                  weekday: 'short',
-                  day: 'numeric',
-                  month: 'short',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}{' '}
-                - {h.sala.nombre}
-              </button>
-            ))}
+      {sedesFiltradas.length === 0 ? (
+        <p>No hay horarios disponibles</p>
+      ) : (
+        sedesFiltradas.map(({ sede, horarios }) => (
+          <div key={sede.id} className="horarios-section">
+            <h4>{sede.nombre}</h4>
+            <div className="horarios-list">
+              {horarios.map((h) => (
+                <button
+                  key={h.id}
+                  onClick={() => manejarClickHorario(h.id)}
+                  className="horario-button"
+                >
+                  {new Date(h.hora).toLocaleString('es-CO', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}{' '}
+                  - {h.sala.nombre}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

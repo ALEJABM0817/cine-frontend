@@ -1,6 +1,8 @@
 .peliculas-admin {
   padding: $spacing-base;
   background: $surface;
+  max-width: 800px;
+  margin: 20px auto;
 
   h2 {
     margin-bottom: $spacing-base;

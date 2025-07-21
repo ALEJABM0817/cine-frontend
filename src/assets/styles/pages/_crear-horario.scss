@@ -1,41 +1,37 @@
-.sedes-admin {
+.crear-horario {
   padding: $spacing-base;
   background: $surface;
-  max-width: 600px;
+  max-width: 500px;
   margin: 20px auto;
+
 
   h2 {
     margin-bottom: $spacing-small;
-    font-size: 1.5rem;
     color: $text-primary;
+    font-size: 1.5rem;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 $spacing-base 0;
-  }
-
-  li {
-    background: $sidebar-background;
+  input,
+  select {
+    width: 100%;
+    padding: $spacing-small;
+    margin-bottom: $spacing-base;
     border: 1px solid $border-color;
     border-radius: $radius-base;
-    padding: $spacing-small $spacing-base;
-    margin-bottom: $spacing-small;
+    background: $sidebar-background;
     color: $text-primary;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
-  .btn-create {
+  button {
     padding: $spacing-small $spacing-base;
-    background: $accent;
-    color: $color-white;
     border: none;
     border-radius: $radius-base;
+    background: $accent;
+    color: $color-white;
     cursor: pointer;
     font-size: 1rem;
     transition: background 0.2s;
-
     &:hover {
       background: darken($accent, 10%);
     }

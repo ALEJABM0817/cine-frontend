@@ -1,8 +1,8 @@
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import RequireAuth from '../components/RequireAuth';
-import Home from '../pages/Home';
+import Home from '../pages/HomePages/Home';
 import Login from '../pages/AuthPages/Login';
-import PeliculaDetalle from '../pages/PeliculaDetalle';
+import PeliculaDetalle from '../pages/HomePages/PeliculaDetalle';
 import AdminPanel from '../pages/AdminPages/AdminPanel';
 import ProtectedRoute from '../components/ProtectedRoute';
 import SalasAdmin from '../pages/AdminPages/SalasAdmin';
@@ -15,7 +15,8 @@ import Navbar from '../components/Navbar';
 import EditarPelicula from '../pages/AdminPages/EditarPelicula';
 import ClientesAdmin from '../pages/AdminPages/ClientesAdmin';
 import ComprasAdmin from '../pages/AdminPages/ComprasAdmin';
-import Comprar from '../pages/Comprar';
+import Comprar from '../pages/CompraPages/Comprar';
+import CrearHorario from '../pages/AdminPages/CrearHorario';
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -24,7 +25,7 @@ const App = () => {
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <Login />} />
       <Route path="/register" element={isAuthenticated ? <Navigate to="/" /> : <Register />} />
       <Route path="/pelicula/:id" element={<PeliculaDetalle />} />
       <Route
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/admin/peliculas" element={<PeliculasAdmin />} />
         <Route path="/admin/peliculas/crear" element={<CrearPelicula />} />
         <Route path="/admin/peliculas/editar/:id" element={<EditarPelicula />} />
+        <Route path="/admin/peliculas/:id/horarios/crear" element={<CrearHorario />} />
         <Route path="/admin/clientes" element={<ClientesAdmin />} />
         <Route path="/admin/compras" element={<ComprasAdmin />} />
       </Route>

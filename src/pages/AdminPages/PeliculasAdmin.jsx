@@ -50,6 +50,9 @@ const PeliculasAdmin = () => {
               <button onClick={() => cambiarEstado(p.id, !p.estado)}>
                 {p.estado ? "Deshabilitar" : "Habilitar"}
               </button>
+              <button onClick={() => navigate(`/admin/peliculas/${p.id}/horarios/crear`)}>
+                Agregar Horario
+              </button>
               <button onClick={() => navigate(`/admin/peliculas/editar/${p.id}`)}>
                 Editar
               </button>

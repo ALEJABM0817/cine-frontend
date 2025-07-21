@@ -7,7 +7,6 @@ const API = axios.create({
 
 API.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
-  console.log('→ Authorization:', token)
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 })
@@ -27,40 +26,49 @@ API.interceptors.response.use(
 );
 
 export const getPeliculas = () => API.get("/peliculas");
+export const getClientes = () => API.get("/admin/clientes");
+export const getCompras = () => API.get("/compras");
+export const getHorario = (id) => API.get(`/horarios/${id}`);
 export const getHorariosPorSede = (id) =>
   API.get(`/peliculas/${id}/sedes-horarios`);
+export const getPelicula = async (id) => {
+  const response = await API.get(`/peliculas/${id}`);
+  return response.data;
+};
+export const getSedes = async () => {
+  const response = await API.get("/sedes");
+  return response.data;
+};
+export const getSalas = async () => {
+  const response = await API.get('/salas');
+  return response.data;
+};
+
 export const login = (email, password) =>
   API.post("/auth/login", { email, password });
-
 export const createPelicula = async (formData) => {
   const response = await API.post("/peliculas", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return response.data;
 };
-
 export const registerCliente = (data) => API.post("/clientes", data);
-export const getClientes = () => API.get("/admin/clientes");
-export const getCompras = () => API.get("/compras");
 export const createCompra = (data) => API.post("/compras", data);
-export const getHorario = (id) => API.get(`/horarios/${id}`);
+export const createHorario = (data) =>
+  API.post(`/horarios`, data);
+export const createSede = async (data) => {
+  const response = await API.post('/sedes', data);
+  return response.data;
+};
 
 export const habilitarCliente = async (id) =>
   (await API.patch(`/admin/clientes/${id}/habilitar`)).data;
-
 export const inhabilitarCliente = async (id) =>
   (await API.patch(`/admin/clientes/${id}/inhabilitar`)).data;
-
 export const habilitarPelicula = async (id) =>
   (await API.patch(`/peliculas/${id}/habilitar`)).data;
-
 export const inhabilitarPelicula = async (id) =>
   (await API.patch(`/peliculas/${id}/inhabilitar`)).data;
-
-export const getPelicula = async (id) => {
-  const response = await API.get(`/peliculas/${id}`);
-  return response.data;
-};
 
 export const updatePelicula = async (id, formData) => {
   const response = await API.put(`/peliculas/${id}`, formData, {

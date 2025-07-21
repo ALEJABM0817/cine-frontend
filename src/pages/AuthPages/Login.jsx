@@ -30,7 +30,7 @@ const Login = () => {
       }
 
     } catch (error) {
-      toast.error('Correo o contraseña incorrectos');
+      toast.error(error.response?.data?.message || 'Correo o contraseña incorrectos');
     }
   };
 

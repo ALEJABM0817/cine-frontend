@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getHorario, createCompra } from '../services/api';
+import { getHorario, createCompra } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const Comprar = () => {
@@ -72,7 +72,7 @@ const Comprar = () => {
         <p><strong>Película:</strong> {horario.pelicula?.titulo}</p>
         <p><strong>Sala:</strong> {horario.sala.nombre}</p>
         <p><strong>Hora:</strong> {new Date(horario.fecha).toLocaleString()}</p>
-        <p><strong>Cantidad de boletos disponibles:</strong> {horario.sala.capacidad}</p>
+        <p><strong>Cantidad de boletos disponibles:</strong> {horario.asientosDisponibles}</p>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

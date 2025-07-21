@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API, { createPelicula } from '../../services/api';
+import API, { createPelicula, getSalas } from '../../services/api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,12 @@ function CrearPelicula() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    API.get('/salas').then(res => setSalas(res.data));
+    getSalas()
+      .then(data => setSalas(data))
+      .catch(err => {
+        console.error('Error al cargar salas:', err);
+        toast.error('No se pudieron cargar las salas');
+      });
   }, []);
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
